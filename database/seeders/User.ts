@@ -5,20 +5,20 @@ export default class UserSeeder extends BaseSeeder {
   public static developmentOnly = true
 
   public async run() {
-    const uniqueKey = 'eMail'
+    const uniqueKey = 'email'
 
     await User.updateOrCreateMany(uniqueKey, [
       {
-        eMail: 'virk@adonisjs.com',
-        password: 'secret123',
+        email: 'virk@adonisjs.com',
+        password: 'admin',
       },
       {
-        eMail: 'romain@adonisjs.com',
-        password: 'supersecret',
+        email: 'romain@adonisjs.com',
+        password: 'admin',
       },
       {
-        eMail: 'gabriel@adonisjs.com',
-        password: 'supersupersecret',
+        email: 'gabriel@adonisjs.com',
+        password: 'admin',
       },
     ])
   }
