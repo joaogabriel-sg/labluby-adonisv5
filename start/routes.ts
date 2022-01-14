@@ -20,6 +20,14 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
+import 'App/Modules/User/routes'
+
+Route.where('id', {
+  match: /^[0-9]+$/,
+  cast: (id) => Number(id),
 })
+
+Route.group(() => {
+  Route.any('/hello', async () => 'Hello World')
+  Route.post('/login', 'AuthController.login')
+}).prefix('/v1')
