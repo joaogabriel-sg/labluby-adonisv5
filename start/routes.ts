@@ -19,10 +19,15 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import Database from '@ioc:Adonis/Lucid/Database'
 
-Route.get('/', async () => {
-  return Database.from('users').select('*')
+import 'App/Modules/User/routes'
+
+Route.where('id', {
+  match: /^[0-9]+$/,
+  cast: (id) => Number(id),
 })
 
-Route.post('/login', 'AuthController.login')
+Route.group(() => {
+  Route.any('/hello', async () => 'Hello World')
+  Route.post('/login', 'AuthController.login')
+}).prefix('/v1')
